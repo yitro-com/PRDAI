@@ -1,0 +1,21 @@
+# PRDAI — Konfigurasi Apache untuk folder publik.
+
+# Jangan tampilkan daftar isi folder.
+Options -Indexes
+
+# Blokir akses langsung ke berkas sensitif (walaupun umumnya sudah di luar publik).
+<FilesMatch "(^\.env|\.env\..*|\.sql$|\.log$|\.md$|composer\.(json|lock)|\.gitignore|\.htaccess)$">
+    Require all denied
+</FilesMatch>
+
+# Arahkan seluruh permintaan ke index.php (front controller).
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 /index.php
+</IfModule>

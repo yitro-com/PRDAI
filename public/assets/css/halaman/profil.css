@@ -1,0 +1,857 @@
+/**
+ * PRDAI — Gaya Halaman Profil Pengguna (Sesuai Gambar 2).
+ *
+ * Struktur:
+ * 1. Tata Letak Dasar & Navigasi Kembali
+ * 2. Kotak Profil Atas dengan Background bacroundProfil.jpg
+ * 3. Baris Statistik 4 Kolom (Total Token, Puncak, Rekor, Hari Beruntun)
+ * 4. Bagian Karya Unggulan (Etalase)
+ * 5. Bagian Aktivitas Token (Heatmap Hijau GitHub-style & Tab)
+ * 6. Bagian Bawah: Formulir Edit Nama & Ganti Password
+ */
+
+/* ==================== 1. TATA LETAK DASAR ==================== */
+.halaman-profil-wadah {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+  color: #ececec;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.profil-bilah-atas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.profil-tombol-kembali {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d1d5db;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.profil-tombol-kembali:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-2px);
+}
+
+/* ==================== 2. KOTAK PROFIL ATAS (bacroundProfil) ==================== */
+.profil-kartu-atas {
+  position: relative;
+  background-color: #0d121d;
+  background-image: url('../../img/bacroundProfil.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 36px rgba(234, 88, 12, 0.12);
+  margin-bottom: 32px;
+}
+
+/* Lapisan gradien halus transparan agar artwork bacroundProfil tampak jelas sampai Karya Unggulan */
+.profil-kartu-atas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.42) 0%, rgba(8, 12, 22, 0.55) 45%, rgba(7, 11, 20, 0.68) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.profil-kartu-atas__isi {
+  position: relative;
+  z-index: 2;
+  padding: 44px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profil-avatar-besar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background-color: #b89047;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+}
+
+.profil-nama-utama {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px;
+  letter-spacing: -0.2px;
+}
+
+.profil-handle {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 28px;
+}
+
+/* ==================== 3. BARIS STATISTIK 4 KOLOM ==================== */
+.profil-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  background: rgba(18, 24, 38, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 12px;
+  box-sizing: border-box;
+}
+
+.profil-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.profil-stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.profil-stat-angka {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 4px;
+}
+
+.profil-stat-label {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ==================== 4. KARYA UNGGULAN (ETALASE) ==================== */
+.profil-seksi {
+  margin-bottom: 40px;
+}
+
+.profil-seksi-judul {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin: 0 0 16px;
+}
+
+.profil-wadah-etalase-dalam {
+  width: 100%;
+  margin-top: 32px;
+  text-align: left;
+}
+
+.profil-seksi-judul--dalam {
+  margin-bottom: 12px;
+  color: #e5e7eb;
+}
+
+.profil-etalase-kotak {
+  background: rgba(14, 19, 30, 0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 38px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Grafis Kartu & Ikon Globe WWW Sesuai Gambar 2 */
+.profil-etalase-grafis {
+  position: relative;
+  width: 120px;
+  height: 64px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.etalase-kartu-layer {
+  position: absolute;
+  width: 72px;
+  height: 48px;
+  background: #1f2533;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.etalase-kartu-layer--kiri {
+  transform: rotate(-10deg) translateX(-18px);
+  opacity: 0.6;
+}
+
+.etalase-kartu-layer--kanan {
+  transform: rotate(10deg) translateX(18px);
+  opacity: 0.6;
+}
+
+.etalase-kartu-layer--tengah {
+  z-index: 2;
+  background: #1a202d;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.etalase-globe-icon {
+  width: 18px;
+  height: 18px;
+  color: #38bdf8;
+}
+
+.etalase-www-teks {
+  font-size: 9px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.profil-etalase-deskripsi {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0 0 16px;
+}
+
+.profil-etalase-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e5e7eb;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.profil-etalase-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ==================== 5. AKTIVITAS TOKEN (HARIAN, MINGGUAN, BULANAN) ==================== */
+.profil-seksi--aktivitas {
+  margin-top: 28px;
+}
+
+.profil-aktivitas-kartu {
+  position: relative;
+  background: #141724;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.profil-aktivitas-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.profil-aktivitas-judul {
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.profil-tab-kelompok {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.profil-tab-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.profil-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.profil-tab-btn--aktif {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* Papan Grafik Inner (Glass Panel Transparan) */
+.profil-grafik-papan {
+  position: relative;
+  z-index: 1;
+  background: rgba(14, 18, 29, 0.68);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 22px 20px 16px;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.profil-grafik-papan::-webkit-scrollbar {
+  height: 6px;
+}
+
+.profil-grafik-papan::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+}
+
+.profil-grafik-papan::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.profil-grafik-papan::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Panel Switcher */
+.profil-grafik-panel {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.profil-grafik-panel--aktif {
+  display: block;
+  opacity: 1;
+  animation: fadeGrafikIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeGrafikIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== PANEL 1: HARIAN ==================== */
+.grafik-harian-wadah {
+  width: 100%;
+  min-width: 660px;
+  display: flex;
+  flex-direction: column;
+}
+
+.grafik-harian-batang-baris {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 125px;
+  padding-bottom: 2px;
+  gap: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.batang-harian {
+  flex: 1;
+  max-width: 9px;
+  min-width: 4px;
+  background: #393e4f;
+  border-radius: 4px 4px 1px 1px;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  transform-origin: bottom;
+}
+
+.batang-harian:hover {
+  transform: scaleY(1.08) scaleX(1.2);
+  background: #565d72;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.batang-harian--hijau {
+  background: #22c55e !important;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.batang-harian--hijau:hover {
+  background: #4ade80 !important;
+  box-shadow: 0 0 14px rgba(74, 222, 128, 0.85);
+}
+
+.grafik-harian-axis-baris {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 2px;
+}
+
+.grafik-harian-axis-slot {
+  flex: 1;
+  max-width: 9px;
+  min-width: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.grafik-harian-axis-angka {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.grafik-harian-axis-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  line-height: 1.1;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ==================== PANEL 2: MINGGUAN ==================== */
+.grafik-mingguan-wadah {
+  width: 100%;
+  min-width: 680px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.grafik-mingguan-bulan-kolom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0 5px;
+}
+
+.grafik-mingguan-bulan-kolom:last-child {
+  border-right: none;
+}
+
+.grafik-mingguan-batang-grup {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 125px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.grafik-mingguan-batang-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.batang-mingguan {
+  width: 10px;
+  background: #393e4f;
+  border-radius: 3px 3px 1px 1px;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  transform-origin: bottom;
+}
+
+.batang-mingguan:hover {
+  transform: scaleY(1.06) scaleX(1.15);
+  background: #565d72;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.batang-mingguan--hijau {
+  background: #22c55e !important;
+  box-shadow: 0 0 9px rgba(34, 197, 94, 0.6);
+}
+
+.batang-mingguan--hijau:hover {
+  background: #4ade80 !important;
+  box-shadow: 0 0 14px rgba(74, 222, 128, 0.85);
+}
+
+.grafik-mingguan-label-minggu {
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.grafik-mingguan-bulan-label {
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-top: 8px;
+  user-select: none;
+}
+
+/* ==================== PANEL 3: BULANAN (DOT MATRIX) ==================== */
+.grafik-bulanan-wadah {
+  width: 100%;
+  min-width: 680px;
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding-top: 6px;
+}
+
+.grafik-bulanan-bulan-grup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.grafik-bulanan-kolom-wadah {
+  display: flex;
+  gap: 4px;
+}
+
+.grafik-bulanan-kolom-hari {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5px;
+}
+
+.titik-bulanan {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #272c3b;
+  cursor: pointer;
+  transition: transform 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+  box-sizing: border-box;
+}
+
+.titik-bulanan:hover {
+  transform: scale(1.4);
+  background-color: #555b6e;
+  z-index: 5;
+}
+
+.titik-bulanan--hijau {
+  background-color: #22c55e !important;
+  box-shadow: 0 0 7px rgba(34, 197, 94, 0.7);
+}
+
+.titik-bulanan--hijau:hover {
+  background-color: #4ade80 !important;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.9);
+}
+
+.grafik-bulanan-bulan-label {
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #9ca3af;
+  margin-top: 12px;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.grafik-bulanan-bulan-grup:hover .grafik-bulanan-bulan-label {
+  color: #ffffff;
+}
+
+/* Kompatibilitas mundur titik-aktivitas */
+.titik-aktivitas {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #262a34;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.titik-aktivitas--hijau {
+  background-color: #22c55e !important;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+/* Tooltip Melayang Aktivitas */
+.profil-tooltip-aktivitas {
+  position: fixed;
+  background: rgba(18, 22, 34, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 99999;
+  white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.profil-tooltip-aktivitas.aktif {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== 6. BAGIAN BAWAH: EDIT NAMA & GANTI PASSWORD ==================== */
+.profil-keamanan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .profil-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .profil-stat-item:nth-child(2)::after {
+    display: none;
+  }
+  .profil-keamanan-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.profil-panel-kartu {
+  background: #141822;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.profil-panel-kepala {
+  margin-bottom: 20px;
+  min-height: 50px;
+}
+
+.profil-panel-judul {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f9fafb;
+  margin: 0 0 4px;
+}
+
+.profil-panel-deskripsi {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.profil-form-isi {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profil-form-bidang-kelompok {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.profil-form-bidang-kelompok .profil-form-grup {
+  margin-bottom: 0;
+}
+
+.profil-form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #d1d5db;
+  margin-bottom: 6px;
+}
+
+.profil-input-teks {
+  width: 100%;
+  background: #0d121d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #ffffff;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.profil-input-teks:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.profil-input-teks:disabled,
+.profil-input-teks[readonly] {
+  background: #121622;
+  color: #9ca3af;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.profil-bantuan-teks {
+  display: block;
+  font-size: 11.5px;
+  color: #6b7280;
+  margin-top: 5px;
+}
+
+.profil-btn-simpan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 12px;
+  box-sizing: border-box;
+}
+
+.profil-form-isi .profil-btn-simpan {
+  margin-top: 24px;
+}
+
+.profil-btn-simpan:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+/* ==================== 7. TOGGLE VISIBILITAS KATA SANDI (IKON MATA) ==================== */
+.profil-sandi-wadah {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.profil-input-teks--sandi {
+  padding-right: 46px !important;
+}
+
+.btn-toggle-mata {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  z-index: 2;
+}
+
+.btn-toggle-mata:hover {
+  color: #f3f4f6;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-toggle-mata:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}

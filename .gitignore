@@ -1,0 +1,22 @@
+# Lingkungan & rahasia
+.env
+
+# Dependensi
+/vendor/
+
+# Log & cache (CI3)
+/application/cache/*
+!/application/cache/index.html
+/application/logs/*
+!/application/logs/index.html
+
+# Berkas sistem operasi / IDE
+.DS_Store
+.idea/
+nbproject/
+*.tmproj
+
+# Berkas basis data lokal
+*.sqlite
+
+.vscode/

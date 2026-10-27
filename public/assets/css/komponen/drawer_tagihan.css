@@ -1,0 +1,452 @@
+/**
+ * PRDAI — Gaya Panel Tagihan / Billing (Slide-Over Sesuai Gambar 2).
+ *
+ * Menggunakan background bacroundProfil.jpg yang sama dengan profil & upgrade,
+ * membentang penuh 100% sampai bawah dengan kartu glassmorphism modern.
+ */
+
+.drawer-tagihan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 260px; /* Sejajar dengan batas sidebar kiri */
+  width: auto;
+  max-width: none;
+  background-color: #060a14;
+  background-image: url('../../img/bacroundProfil.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.2, 0, 0, 1);
+  overflow: hidden;
+  user-select: text;
+}
+
+/* Overlay halus tembus pandang menyeluruh */
+.drawer-tagihan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 22, 0.38) 0%,
+    rgba(6, 10, 20, 0.65) 35%,
+    rgba(6, 10, 20, 0.85) 75%,
+    rgba(5, 8, 16, 0.94) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drawer-tagihan.tersembunyi {
+  display: none !important;
+  transform: translateX(100%) !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Saat Sidebar Di-collapse, Panel Mengembang 100% */
+.sidebar-chat.sidebar-chat--tertutup ~ .drawer-tagihan {
+  left: 0;
+}
+
+/* Mode Layar Penuh (Expand) */
+.drawer-tagihan.drawer-tagihan--fullscreen {
+  left: 0 !important;
+  z-index: 60 !important;
+}
+
+/* ==================== HEADER BILAH ATAS (HANYA TOMBOL X KANAN ATAS SEPERTI PROFIL) ==================== */
+.drawer-tagihan__header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 64px;
+  background: transparent;
+  border-bottom: none;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 30;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.drawer-tagihan__header-aksi {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.drawer-tagihan__btn-tutup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(10, 15, 28, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e5e7eb;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-tagihan__btn-tutup:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* ==================== AREA KONTEN SCROLLABLE ==================== */
+.drawer-tagihan__isi {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 48px 32px 80px;
+  position: relative;
+  z-index: 2;
+  overscroll-behavior: contain;
+}
+
+.drawer-tagihan__isi::-webkit-scrollbar {
+  width: 7px;
+}
+
+.drawer-tagihan__isi::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer-tagihan__isi::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.drawer-tagihan__wadah-konten {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Judul & Deskripsi */
+.drawer-tagihan__kepala {
+  margin-bottom: 32px;
+}
+
+.drawer-tagihan__judul {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.4px;
+}
+
+.drawer-tagihan__deskripsi {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* ==================== BARIS ATAS 2 KARTU ==================== */
+.drawer-tagihan__grid-atas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.drawer-tagihan__kartu {
+  background: rgba(14, 20, 34, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.drawer-tagihan__kartu-kepala {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.drawer-tagihan__kartu-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.drawer-tagihan__lencana-aktif {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.drawer-tagihan__paket-nama {
+  font-size: 20px;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 6px;
+}
+
+.drawer-tagihan__paket-harga {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+.drawer-tagihan__paket-info {
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin-bottom: 22px;
+}
+
+.drawer-tagihan__kartu-tombol-baris {
+  display: flex;
+  gap: 10px;
+}
+
+.drawer-tagihan__btn-sekunder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.drawer-tagihan__btn-sekunder:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.drawer-tagihan__btn-sekunder--bahaya:hover {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Kartu Metode Pembayaran */
+.drawer-tagihan__pembayaran-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.drawer-tagihan__kartu-visual {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Logo Mastercard CSS Asli */
+.drawer-tagihan__mastercard-logo {
+  display: flex;
+  position: relative;
+  width: 44px;
+  height: 28px;
+  align-items: center;
+}
+
+.drawer-tagihan__mc-lingkaran {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+}
+
+.drawer-tagihan__mc-merah {
+  background-color: #eb001b;
+  left: 0;
+  z-index: 1;
+}
+
+.drawer-tagihan__mc-oranye {
+  background-color: #f79e1b;
+  left: 16px;
+  z-index: 2;
+  opacity: 0.95;
+  mix-blend-mode: hard-light;
+}
+
+.drawer-tagihan__kartu-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-tagihan__kartu-merk {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.drawer-tagihan__kartu-nomor {
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+
+/* ==================== TABEL RIWAYAT TAGIHAN ==================== */
+.drawer-tagihan__seksi-riwayat {
+  margin-top: 10px;
+}
+
+.drawer-tagihan__subjudul {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.drawer-tagihan__tabel-wadah {
+  background: rgba(14, 20, 34, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.drawer-tagihan__tabel-scroll {
+  overflow-x: auto;
+}
+
+.drawer-tagihan__tabel {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.drawer-tagihan__tabel thead th {
+  padding: 16px 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.drawer-tagihan__tabel tbody td {
+  padding: 16px 20px;
+  font-size: 13.5px;
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.drawer-tagihan__tabel tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.drawer-tagihan__tabel tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.drawer-tagihan__td-tgl {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.drawer-tagihan__td-desk {
+  color: #e2e8f0;
+}
+
+.drawer-tagihan__td-nominal {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.drawer-tagihan__status-berhasil {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(34, 197, 94, 0.16);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.drawer-tagihan__btn-unduh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.drawer-tagihan__btn-unduh:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ==================== RESPONSIF ==================== */
+@media (max-width: 1024px) {
+  .drawer-tagihan__grid-atas {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawer-tagihan {
+    left: 0 !important;
+    width: 100vw !important;
+    z-index: 60;
+  }
+
+  .drawer-tagihan__header {
+    padding: 0 16px;
+  }
+
+  .drawer-tagihan__isi {
+    padding: 24px 16px 60px;
+  }
+
+  .drawer-tagihan__grid-atas {
+    grid-template-columns: 1fr;
+  }
+}

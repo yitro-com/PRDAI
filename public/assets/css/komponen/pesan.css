@@ -1,0 +1,94 @@
+/**
+ * PRDAI — Komponen notifikasi kilat dan indikator proses.
+ *
+ * Mengikuti aturan Bagian 12.4: Blok tipis di atas konten, role="status" / "alert",
+ * TANPA IKON hiasan. Indikator memuat berupa garis tipis + teks status.
+ */
+.pesan-kilat {
+  padding: var(--spasi-3) var(--spasi-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--teks-sm);
+  margin-bottom: var(--spasi-6);
+  border: 1px solid transparent;
+  line-height: 1.4;
+}
+
+.pesan-kilat--sukses {
+  background-color: #ECFDF5;
+  color: #065F46;
+  border-color: #A7F3D0;
+}
+
+.pesan-kilat--galat {
+  background-color: #FEF2F2;
+  color: #991B1B;
+  border-color: #FECACA;
+}
+
+.pesan-kilat--info {
+  background-color: #F0FDF4;
+  color: #166534;
+  border-color: #BBF7D0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pesan-kilat--sukses {
+    background-color: rgba(31, 122, 77, 0.15);
+    color: #6FCF97;
+    border-color: rgba(111, 207, 151, 0.3);
+  }
+  .pesan-kilat--galat {
+    background-color: rgba(180, 35, 24, 0.15);
+    color: #F07C72;
+    border-color: rgba(240, 124, 114, 0.3);
+  }
+  .pesan-kilat--info {
+    background-color: rgba(47, 93, 80, 0.15);
+    color: #7FB7A4;
+    border-color: rgba(127, 183, 164, 0.3);
+  }
+}
+
+/* Indikator proses / garis kemajuan tipis (Bagian 8.4 & 12.4) */
+.indikator-proses {
+  margin-top: var(--spasi-4);
+  padding: var(--spasi-4);
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.indikator-proses__teks {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  margin-bottom: var(--spasi-3);
+}
+
+.garis-kemajuan {
+  width: 100%;
+  height: 4px;
+  background-color: var(--warna-garis);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.garis-kemajuan__isi {
+  height: 100%;
+  background-color: var(--warna-aksen);
+  border-radius: 2px;
+  transition: width 200ms ease;
+}
+
+.garis-kemajuan--berjalan .garis-kemajuan__isi {
+  width: 40%;
+  position: absolute;
+  animation: garis-meluncur 1.5s infinite ease-in-out;
+}
+
+@keyframes garis-meluncur {
+  0% { left: -40%; }
+  50% { left: 40%; width: 60%; }
+  100% { left: 100%; width: 30%; }
+}

@@ -1,0 +1,95 @@
+/**
+ * PRDAI — Komponen tombol.
+ *
+ * Mendukung varian utama, sekunder (garis luar), teks, dan bahaya.
+ * Memenuhi kriteria tinggi minimal 40px dan fokus cincin aksen (WCAG AA).
+ */
+.tombol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spasi-2);
+  min-height: 40px;
+  padding: var(--spasi-2) var(--spasi-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--teks-sm);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transisi-cepat), border-color var(--transisi-cepat), color var(--transisi-cepat);
+  border: 1px solid transparent;
+}
+
+.tombol:focus-visible {
+  outline: 2px solid var(--warna-aksen);
+  outline-offset: 2px;
+}
+
+.tombol:disabled,
+.tombol[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Varian Utama */
+.tombol--utama {
+  background-color: var(--warna-aksen);
+  color: var(--warna-aksen-kontras);
+  border-color: var(--warna-aksen);
+}
+
+.tombol--utama:hover:not(:disabled) {
+  background-color: var(--warna-aksen-hover);
+  border-color: var(--warna-aksen-hover);
+}
+
+/* Varian Sekunder (Garis) */
+.tombol--sekunder {
+  background-color: transparent;
+  color: var(--warna-teks);
+  border-color: var(--warna-garis);
+}
+
+.tombol--sekunder:hover:not(:disabled) {
+  background-color: var(--warna-permukaan);
+  border-color: var(--warna-teks-redup);
+}
+
+/* Varian Teks */
+.tombol--teks {
+  background-color: transparent;
+  color: var(--warna-teks-redup);
+  border-color: transparent;
+  padding-left: var(--spasi-2);
+  padding-right: var(--spasi-2);
+}
+
+.tombol--teks:hover:not(:disabled) {
+  color: var(--warna-teks);
+  background-color: var(--warna-aksen-lembut);
+}
+
+/* Varian Bahaya */
+.tombol--bahaya {
+  background-color: transparent;
+  color: var(--warna-bahaya);
+  border-color: var(--warna-bahaya);
+}
+
+.tombol--bahaya:hover:not(:disabled) {
+  background-color: var(--warna-bahaya);
+  color: var(--warna-bahaya-kontras);
+}
+
+.tombol--blok {
+  width: 100%;
+}
+
+.tombol.btn-salin-semua-prd--tersalin {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+}
+

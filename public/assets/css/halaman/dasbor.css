@@ -1,0 +1,83 @@
+/**
+ * PRDAI — Gaya halaman Dasbor.
+ */
+.halaman-dasbor {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-16);
+}
+
+.dasbor-kepala {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spasi-6);
+  gap: var(--spasi-4);
+  flex-wrap: wrap;
+}
+
+.dasbor-kepala__judul {
+  font-size: var(--teks-xl);
+  font-weight: 700;
+}
+
+.dasbor-cari {
+  margin-bottom: var(--spasi-6);
+  display: flex;
+  gap: var(--spasi-2);
+  max-width: 480px;
+}
+
+.dasbor-cari__input {
+  flex: 1;
+}
+
+.dasbor-kosong {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-12) var(--spasi-6);
+  text-align: center;
+}
+
+.dasbor-kosong__teks {
+  color: var(--warna-teks-redup);
+  font-size: var(--teks-md);
+  margin-bottom: var(--spasi-4);
+}
+
+/* Paginasi */
+.paginasi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spasi-1);
+  margin-top: var(--spasi-8);
+}
+
+.paginasi a,
+.paginasi span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--spasi-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--teks-sm);
+  border: 1px solid var(--warna-garis);
+  color: var(--warna-teks);
+  text-decoration: none;
+  background-color: var(--warna-permukaan);
+}
+
+.paginasi a:hover {
+  background-color: var(--warna-aksen-lembut);
+  border-color: var(--warna-aksen);
+}
+
+.paginasi__nomor--aktif {
+  background-color: var(--warna-aksen) !important;
+  color: var(--warna-aksen-kontras) !important;
+  border-color: var(--warna-aksen) !important;
+  font-weight: 600;
+}

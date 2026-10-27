@@ -1,0 +1,87 @@
+/**
+ * PRDAI — Gaya halaman Sunting Dokumen PRD.
+ */
+.halaman-ubah-prd {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-16);
+  max-width: var(--lebar-baca);
+  margin: 0 auto;
+}
+
+.ubah-kepala {
+  margin-bottom: var(--spasi-6);
+}
+
+.ubah-kepala__judul {
+  font-size: var(--teks-xl);
+  font-weight: 700;
+  margin-bottom: var(--spasi-1);
+}
+
+/* Tab Tulis / Pratinjau */
+.tab-wadah {
+  display: flex;
+  gap: var(--spasi-1);
+  border-bottom: 1px solid var(--warna-garis);
+  margin-bottom: var(--spasi-4);
+}
+
+.tab-tombol {
+  padding: var(--spasi-2) var(--spasi-4);
+  font-size: var(--teks-sm);
+  font-weight: 500;
+  color: var(--warna-teks-redup);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: color var(--transisi-cepat), border-color var(--transisi-cepat);
+}
+
+.tab-tombol:hover {
+  color: var(--warna-teks);
+}
+
+.tab-tombol--aktif {
+  color: var(--warna-aksen);
+  border-bottom-color: var(--warna-aksen);
+}
+
+.editor-markdown {
+  width: 100%;
+  min-height: 480px;
+  font-family: var(--font-kode);
+  font-size: var(--teks-sm);
+  line-height: 1.5;
+  padding: var(--spasi-4);
+  background-color: var(--warna-permukaan);
+  color: var(--warna-teks);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+}
+
+.editor-markdown:focus {
+  outline: 2px solid var(--warna-aksen);
+  border-color: var(--warna-aksen);
+}
+
+.pratinjau-area {
+  min-height: 480px;
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  padding: var(--spasi-6);
+  line-height: var(--tinggi-baris-baca);
+}
+
+.ubah-aksi-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--spasi-6);
+  padding-top: var(--spasi-4);
+  border-top: 1px solid var(--warna-garis);
+}

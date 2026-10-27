@@ -1,0 +1,90 @@
+/**
+ * PRDAI — Komponen navigasi bilah atas (header).
+ *
+ * Mengikuti aturan Bagian 12.4: Wordmark teks "PRDAI" di kiri;
+ * Menu teks bersih: Dasbor, Buat PRD, Profil, Keluar.
+ */
+.navigasi-atas {
+  background-color: var(--warna-permukaan);
+  border-bottom: 1px solid var(--warna-garis);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navigasi-atas__wadah {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.navigasi-atas__logo {
+  font-size: var(--teks-lg);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--warna-teks);
+  text-decoration: none;
+}
+
+.navigasi-atas__logo-tag {
+  font-size: var(--teks-xs);
+  font-weight: 600;
+  background-color: var(--warna-aksen-lembut);
+  color: var(--warna-aksen);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.navigasi-atas__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-4);
+}
+
+.navigasi-atas__tautan {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  text-decoration: none;
+  padding: var(--spasi-1) var(--spasi-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--transisi-cepat), background-color var(--transisi-cepat);
+}
+
+.navigasi-atas__tautan:hover {
+  color: var(--warna-teks);
+  background-color: var(--warna-aksen-lembut);
+}
+
+.navigasi-atas__tautan--aktif {
+  color: var(--warna-aksen);
+  font-weight: 600;
+}
+
+.navigasi-atas__form-keluar {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.kaki-laman {
+  border-top: 1px solid var(--warna-garis);
+  padding-top: var(--spasi-6);
+  padding-bottom: var(--spasi-8);
+  margin-top: var(--spasi-12);
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .navigasi-atas__menu {
+    gap: var(--spasi-2);
+  }
+  .navigasi-atas__tautan {
+    font-size: var(--teks-xs);
+    padding: var(--spasi-1);
+  }
+}

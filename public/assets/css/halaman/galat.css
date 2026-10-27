@@ -1,0 +1,35 @@
+/**
+ * PRDAI — Gaya halaman galat kustom (403 dan 404).
+ */
+.halaman-galat {
+  padding-top: var(--spasi-16);
+  padding-bottom: var(--spasi-16);
+  display: flex;
+  justify-content: center;
+}
+
+.halaman-galat__panel {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  padding: var(--spasi-8);
+}
+
+.halaman-galat__kode {
+  font-size: var(--teks-2xl);
+  font-weight: 700;
+  color: var(--warna-aksen);
+  line-height: 1;
+  margin-bottom: var(--spasi-2);
+}
+
+.halaman-galat__judul {
+  font-size: var(--teks-lg);
+  margin-bottom: var(--spasi-3);
+}
+
+.halaman-galat__deskripsi {
+  color: var(--warna-teks-redup);
+  font-size: var(--teks-sm);
+  margin-bottom: var(--spasi-6);
+}

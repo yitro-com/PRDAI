@@ -1,0 +1,64 @@
+/**
+ * PRDAI — Token desain ChatGPT Dark Mode.
+ *
+ * Mengikuti skema warna ChatGPT persis sesuai gambar referensi:
+ * Latar utama #212121, Sidebar #171717, Input kapsul #2f2f2f, Teks #ececec.
+ */
+:root {
+  /* Warna Desain PRDAI (Senada Halaman Login & Dasbor) */
+  --warna-latar: #060d1d;
+  --warna-sidebar: #0a1121;
+  --warna-permukaan: #0f172a;
+  --warna-permukaan-tinggi: #1e293b;
+  --warna-input: #0d1424;
+  --warna-teks: #ececec;
+  --warna-teks-redup: #94a3b8;
+  --warna-garis: rgba(255, 255, 255, 0.08);
+  --warna-garis-terang: rgba(255, 255, 255, 0.15);
+  --warna-aksen: #2563eb;
+  --warna-aksen-hover: #1d4ed8;
+  --warna-aksen-kontras: #ffffff;
+  --warna-aksen-lembut: rgba(37, 99, 235, 0.15);
+  --warna-bahaya: #ef4444;
+  --warna-bahaya-kontras: #ffffff;
+  --warna-sukses: #2563eb;
+  --warna-sukses-kontras: #ffffff;
+
+  /* Tipografi */
+  --font-teks: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-kode: ui-monospace, "SF Mono", Consolas, monospace;
+
+  /* Skala Ukuran Font */
+  --teks-xs: 12px;
+  --teks-sm: 14px;
+  --teks-md: 15px;
+  --teks-lg: 18px;
+  --teks-xl: 24px;
+  --teks-2xl: 32px;
+
+  /* Tinggi Baris */
+  --tinggi-baris-padat: 1.25;
+  --tinggi-baris-baca: 1.6;
+
+  /* Spasi */
+  --spasi-1: 4px;
+  --spasi-2: 8px;
+  --spasi-3: 12px;
+  --spasi-4: 16px;
+  --spasi-6: 24px;
+  --spasi-8: 32px;
+  --spasi-12: 48px;
+
+  /* Radius Kapsul & Sudut */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-kapsul: 9999px;
+
+  /* Lebar Konten Maksimal */
+  --lebar-chat: 800px;
+  --lebar-sidebar: 260px;
+
+  /* Transisi */
+  --transisi-cepat: 150ms ease;
+}

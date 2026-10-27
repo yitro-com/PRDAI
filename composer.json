@@ -1,0 +1,14 @@
+{
+    "name": "prdai/prdai",
+    "description": "PRDAI — Website pembuat PRD berbasis AI dengan CodeIgniter 3.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "vlucas/phpdotenv": "^4.2",
+        "erusev/parsedown": "^1.7"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

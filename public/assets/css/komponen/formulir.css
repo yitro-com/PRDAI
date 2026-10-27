@@ -1,0 +1,105 @@
+/**
+ * PRDAI — Komponen formulir.
+ *
+ * Label selalu tampak di atas, border 1px berganti aksen saat fokus atau
+ * warna bahaya saat galat. Pesan galat tampil jelas di bawah input.
+ */
+.kelompok-bidang {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-1);
+  margin-bottom: var(--spasi-4);
+}
+
+.kelompok-bidang__label {
+  font-size: var(--teks-sm);
+  font-weight: 500;
+  color: var(--warna-teks);
+}
+
+.kelompok-bidang__wajib {
+  color: var(--warna-bahaya);
+  margin-left: 2px;
+}
+
+.kelompok-bidang__bantuan {
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+}
+
+.kelompok-bidang__hitungan {
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+  text-align: right;
+  margin-top: 2px;
+}
+
+.masukan-teks,
+.masukan-pilihan,
+.masukan-area {
+  width: 100%;
+  min-height: 40px;
+  padding: var(--spasi-2) var(--spasi-3);
+  font-size: var(--teks-sm);
+  color: var(--warna-teks);
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transisi-cepat), outline var(--transisi-cepat);
+}
+
+.masukan-teks:focus,
+.masukan-pilihan:focus,
+.masukan-area:focus {
+  outline: 2px solid var(--warna-aksen);
+  outline-offset: 1px;
+  border-color: var(--warna-aksen);
+}
+
+.masukan-area {
+  min-height: 100px;
+  resize: vertical;
+  line-height: var(--tinggi-baris-baca);
+}
+
+.kelompok-bidang--galat .masukan-teks,
+.kelompok-bidang--galat .masukan-pilihan,
+.kelompok-bidang--galat .masukan-area {
+  border-color: var(--warna-bahaya);
+}
+
+.kelompok-bidang--galat .masukan-teks:focus,
+.kelompok-bidang--galat .masukan-pilihan,
+.kelompok-bidang--galat .masukan-area:focus {
+  outline-color: var(--warna-bahaya);
+}
+
+.pesan-galat-bidang {
+  font-size: var(--teks-xs);
+  color: var(--warna-bahaya);
+  margin-top: 2px;
+}
+
+/* Kotak centang & radio */
+.pilihan-grup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-2);
+  margin-top: var(--spasi-1);
+}
+
+.pilihan-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-2);
+  font-size: var(--teks-sm);
+  cursor: pointer;
+}
+
+.pilihan-item input[type="checkbox"],
+.pilihan-item input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--warna-aksen);
+  cursor: pointer;
+}

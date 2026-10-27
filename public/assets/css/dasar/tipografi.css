@@ -1,0 +1,78 @@
+/**
+ * PRDAI — Aturan tipografi dasar.
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: var(--tinggi-baris-padat);
+  color: var(--warna-teks);
+}
+
+h1 {
+  font-size: var(--teks-xl);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--teks-lg);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--teks-md);
+}
+
+p {
+  color: var(--warna-teks);
+}
+
+small {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-kode);
+  font-size: var(--teks-sm);
+}
+
+.teks-redup {
+  color: var(--warna-teks-redup);
+}
+
+.teks-aksen {
+  color: var(--warna-aksen);
+}
+
+.teks-bahaya {
+  color: var(--warna-bahaya);
+}
+
+.teks-sukses {
+  color: var(--warna-sukses);
+}
+
+.wadah {
+  width: 100%;
+  max-width: var(--lebar-umum);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spasi-4);
+  padding-right: var(--spasi-4);
+}
+
+.wadah--sempit {
+  max-width: var(--lebar-formulir);
+}
+
+.wadah--baca {
+  max-width: var(--lebar-baca);
+}
+
+.jarak-atas-2 { margin-top: var(--spasi-2); }
+.jarak-atas-4 { margin-top: var(--spasi-4); }
+.jarak-atas-6 { margin-top: var(--spasi-6); }
+.jarak-bawah-4 { margin-bottom: var(--spasi-4); }
+.jarak-bawah-6 { margin-bottom: var(--spasi-6); }
+.jarak-kiri-2 { margin-left: var(--spasi-2); }
+
+

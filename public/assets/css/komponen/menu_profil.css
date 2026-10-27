@@ -1,0 +1,509 @@
+/**
+ * PRDAI — Gaya Komponen Menu Dropdown Profil (Popover)
+ * Mengikuti desain minimalis gelap persis seperti tangkapan layar antarmuka modern.
+ */
+
+.menu-profil-popover {
+  position: absolute;
+  width: 268px;
+  background-color: #1a1d24;
+  background: linear-gradient(180deg, #1f232b 0%, #161920 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: 6px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  animation: menuProfilMuncul 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom left;
+}
+
+.menu-profil-popover.tersembunyi {
+  display: none !important;
+}
+
+@keyframes menuProfilMuncul {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- Baris Pengguna Atas --- */
+.menu-profil__user-baris {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.menu-profil__user-baris:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.menu-profil__avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background-color: #b89047;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.menu-profil__user-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-profil__user-nama {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f3f4f6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.menu-profil__user-tier {
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.2;
+}
+
+.menu-profil__panah-kanan {
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Garis Pembatas --- */
+.menu-profil__pembatas {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: 5px 4px;
+}
+
+/* --- Item Menu --- */
+.menu-profil__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.menu-profil__item:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.menu-profil__item:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: -1px;
+}
+
+.menu-profil__ikon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.menu-profil__item:hover .menu-profil__ikon {
+  color: #ffffff;
+}
+
+.menu-profil__label {
+  flex: 1;
+}
+
+.menu-profil__item-panah {
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+}
+
+/* Tombol Form Keluar */
+.menu-profil__form-keluar {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ==================== RINGKASAN PROFIL MELAYANG (HOVER PREVIEW) ==================== */
+.ringkasan-profil-melayang {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 8px;
+  width: 280px;
+  background: linear-gradient(180deg, #1c222e 0%, #121622 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75), 0 0 24px rgba(56, 189, 248, 0.12);
+  padding: 14px;
+  z-index: 1050;
+  pointer-events: none;
+  animation: ringkasanMelayangMuncul 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.ringkasan-profil-melayang.tersembunyi {
+  display: none !important;
+}
+
+@keyframes ringkasanMelayangMuncul {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ringkasan-profil__kartu {
+  display: flex;
+  flex-direction: column;
+}
+
+.ringkasan-profil__atas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ringkasan-profil__avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background-color: #b89047;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.ringkasan-profil__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ringkasan-profil__nama {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9fafb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.ringkasan-profil__handle {
+  font-size: 12px;
+  color: #38bdf8;
+  line-height: 1.3;
+}
+
+.ringkasan-profil__email {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ringkasan-profil__garis {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 12px 0 10px;
+}
+
+.ringkasan-profil__metrik-baris {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.ringkasan-profil__metrik-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ringkasan-profil__metrik-label {
+  font-size: 10px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ringkasan-profil__metrik-nilai {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f3f4f6;
+}
+
+.ringkasan-profil__metrik-nilai--tier {
+  color: #f59e0b;
+}
+
+.ringkasan-profil__petunjuk {
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.3;
+}
+
+/* ==================== FLYOUT RINGKASAN PROFIL DI SEBELAH KANAN (SESUAI PERMINTAAN) ==================== */
+.menu-profil__user-wadah {
+  position: relative;
+  width: 100%;
+}
+
+.flyout-ringkasan-profil {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 10px);
+  width: 330px;
+  background-color: #0d121e;
+  background-image: url('../../img/bacroundProfil.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.88), 0 0 32px rgba(234, 88, 12, 0.2);
+  overflow: hidden;
+  z-index: 1200;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: flyoutMelayangKanan 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.flyout-ringkasan-profil.tersembunyi {
+  display: none;
+}
+
+.menu-profil__user-wadah:hover .flyout-ringkasan-profil {
+  display: block !important;
+}
+
+/* Lapisan gradien halus transparan agar artwork bacroundProfil tampak estetik */
+.flyout-ringkasan-profil::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.45) 0%, rgba(8, 12, 22, 0.62) 50%, rgba(6, 10, 18, 0.85) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Jembatan tak kasat mata agar kursor tidak flicker saat menyeberang ke kartu kanan */
+.flyout-ringkasan-profil::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -14px;
+  width: 14px;
+  pointer-events: auto;
+}
+
+.flyout-ringkasan__isi {
+  position: relative;
+  z-index: 2;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.flyout-ringkasan__kartu-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.flyout-ringkasan__avatar {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  background-color: #b89047;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.flyout-ringkasan__identitas {
+  flex: 1;
+  min-width: 0;
+}
+
+.flyout-ringkasan__nama {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.flyout-ringkasan__handle {
+  font-size: 12px;
+  color: #38bdf8;
+  line-height: 1.3;
+}
+
+.flyout-ringkasan__email {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 4 Kolom Metrik Statistik Persis Ringkasan Awal Gambar 2 */
+.flyout-ringkasan__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  background: rgba(10, 14, 24, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.flyout-ringkasan__stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.flyout-ringkasan__stat-angka {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.flyout-ringkasan__stat-label {
+  font-size: 10.5px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* Footer Flyout */
+.flyout-ringkasan__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+.flyout-ringkasan__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flyout-ringkasan__titik-aktif {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.flyout-ringkasan__paket {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #f59e0b;
+}
+
+.flyout-ringkasan__buka-teks {
+  font-size: 11px;
+  color: #93c5fd;
+  transition: color 0.15s ease;
+}
+
+.flyout-ringkasan-profil:hover .flyout-ringkasan__buka-teks {
+  color: #ffffff;
+}
+
+@keyframes flyoutMelayangKanan {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+

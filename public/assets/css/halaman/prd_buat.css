@@ -1,0 +1,196 @@
+/**
+ * PRDAI — Gaya halaman Susun PRD Singkat (Single Prompt Execution).
+ *
+ * Mengikuti tampilan AI agent modern: satu kotak prompt terpusat,
+ * riwayat proses eksekusi langsung, dan desain tipografi bersih tanpa polusi ikon.
+ */
+.halaman-eksekusi-ai {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-16);
+  max-width: var(--lebar-baca);
+  margin: 0 auto;
+}
+
+.eksekusi-kepala {
+  text-align: center;
+  margin-bottom: var(--spasi-8);
+}
+
+.eksekusi-kepala__judul {
+  font-size: var(--teks-xl);
+  font-weight: 700;
+  margin-bottom: var(--spasi-2);
+}
+
+.eksekusi-kepala__deskripsi {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+}
+
+/* Kotak Prompt Utama */
+.kotak-prompt {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color var(--transisi-cepat), outline var(--transisi-cepat);
+}
+
+.kotak-prompt:focus-within {
+  border-color: var(--warna-aksen);
+  outline: 2px solid var(--warna-aksen-lembut);
+}
+
+.kotak-prompt__area {
+  width: 100%;
+  min-height: 110px;
+  border: none;
+  background: transparent;
+  resize: vertical;
+  font-size: var(--teks-md);
+  line-height: var(--tinggi-baris-baca);
+  color: var(--warna-teks);
+  padding: var(--spasi-2) 0;
+}
+
+.kotak-prompt__area:focus {
+  outline: none;
+}
+
+.kotak-prompt__bar-bawah {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spasi-3);
+  border-top: 1px solid var(--warna-garis);
+  gap: var(--spasi-3);
+  flex-wrap: wrap;
+}
+
+.kotak-prompt__opsi {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-2);
+}
+
+.kotak-prompt__opsi-pilihan {
+  background-color: var(--warna-latar);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+}
+
+.kotak-prompt__opsi-pilihan:focus {
+  outline: 2px solid var(--warna-aksen);
+  color: var(--warna-teks);
+}
+
+.kotak-prompt__tombol-kirim {
+  min-height: 38px;
+  padding: var(--spasi-2) var(--spasi-4);
+  font-weight: 600;
+}
+
+/* Saran Ide Singkat (Chips) */
+.saran-ide {
+  margin-top: var(--spasi-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-2);
+  flex-wrap: wrap;
+}
+
+.saran-ide__label {
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+}
+
+.saran-ide__tombol {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+  cursor: pointer;
+  transition: all var(--transisi-cepat);
+}
+
+.saran-ide__tombol:hover {
+  background-color: var(--warna-aksen-lembut);
+  border-color: var(--warna-aksen);
+  color: var(--warna-aksen);
+}
+
+/* Tampilan Log Eksekusi Seperti di Gambar */
+.log-eksekusi {
+  margin-top: var(--spasi-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-4);
+}
+
+.kartu-prompt-pengguna {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-4) var(--spasi-6);
+  font-size: var(--teks-md);
+  color: var(--warna-teks);
+  line-height: var(--tinggi-baris-baca);
+}
+
+.alur-eksekusi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spasi-3);
+  font-size: var(--teks-sm);
+  line-height: 1.5;
+  color: var(--warna-teks-redup);
+  animation: pudarMasuk 300ms ease;
+}
+
+.alur-eksekusi-item--aktif {
+  color: var(--warna-teks);
+  font-weight: 500;
+}
+
+.alur-eksekusi-item--sukses {
+  color: var(--warna-sukses);
+}
+
+.alur-eksekusi-item__titik {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--warna-garis);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
+.alur-eksekusi-item--aktif .alur-eksekusi-item__titik {
+  background-color: var(--warna-aksen);
+  box-shadow: 0 0 0 3px var(--warna-aksen-lembut);
+}
+
+.alur-eksekusi-item--sukses .alur-eksekusi-item__titik {
+  background-color: var(--warna-sukses);
+}
+
+.alur-eksekusi-item__waktu {
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+  margin-left: var(--spasi-2);
+}
+
+.sembunyi {
+  display: none !important;
+}
+
+@keyframes pudarMasuk {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

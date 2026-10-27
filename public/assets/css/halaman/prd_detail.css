@@ -1,0 +1,212 @@
+/**
+ * PRDAI — Gaya halaman Tinjau Dokumen PRD.
+ *
+ * Dirancang untuk kenyamanan membaca maksimal (lebar 760px, tipografi teratur,
+ * gaya tabel dan diagram rapi).
+ */
+.halaman-detail-prd {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-16);
+}
+
+.detail-kepala {
+  margin-bottom: var(--spasi-8);
+  padding-bottom: var(--spasi-6);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.detail-kepala__judul {
+  font-size: var(--teks-xl);
+  font-weight: 700;
+  margin-bottom: var(--spasi-2);
+}
+
+.detail-kepala__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-3);
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  margin-bottom: var(--spasi-6);
+  flex-wrap: wrap;
+}
+
+.detail-aksi-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-2);
+  flex-wrap: wrap;
+}
+
+.form-aksi-inline {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tata Letak Baca dan Daftar Isi */
+.tata-letak-baca {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spasi-8);
+}
+
+@media (min-width: 1024px) {
+  .tata-letak-baca {
+    grid-template-columns: minmax(0, 1fr) 220px;
+  }
+}
+
+.dokumen-prd {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-8);
+  line-height: var(--tinggi-baris-baca);
+}
+
+/* Tipografi di dalam Dokumen Markdown */
+.dokumen-prd h1,
+.dokumen-prd h2,
+.dokumen-prd h3,
+.dokumen-prd h4 {
+  margin-top: var(--spasi-8);
+  margin-bottom: var(--spasi-3);
+  scroll-margin-top: 80px;
+}
+
+.dokumen-prd h1:first-child {
+  margin-top: 0;
+}
+
+.dokumen-prd p {
+  margin-bottom: var(--spasi-4);
+}
+
+.dokumen-prd ul,
+.dokumen-prd ol {
+  margin-bottom: var(--spasi-4);
+  padding-left: var(--spasi-6);
+}
+
+.dokumen-prd ul {
+  list-style: disc;
+}
+
+.dokumen-prd ol {
+  list-style: decimal;
+}
+
+.dokumen-prd li {
+  margin-bottom: var(--spasi-1);
+}
+
+.dokumen-prd table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spasi-4);
+  margin-bottom: var(--spasi-6);
+  font-size: var(--teks-sm);
+}
+
+.dokumen-prd th,
+.dokumen-prd td {
+  border: 1px solid var(--warna-garis);
+  padding: var(--spasi-2) var(--spasi-3);
+  text-align: left;
+}
+
+.dokumen-prd th {
+  background-color: var(--warna-latar);
+  font-weight: 600;
+}
+
+.dokumen-prd blockquote {
+  border-left: 3px solid var(--warna-aksen);
+  padding-left: var(--spasi-4);
+  margin-bottom: var(--spasi-4);
+  color: var(--warna-teks-redup);
+}
+
+.dokumen-prd pre {
+  background-color: var(--warna-latar);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  padding: var(--spasi-4);
+  overflow-x: auto;
+  margin-bottom: var(--spasi-4);
+}
+
+.dokumen-prd code {
+  background-color: var(--warna-latar);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: var(--teks-xs);
+}
+
+.dokumen-prd pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Diagram Mermaid */
+.wadah-mermaid {
+  background-color: var(--warna-latar);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-sm);
+  padding: var(--spasi-4);
+  margin-bottom: var(--spasi-4);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.wadah-mermaid svg {
+  margin: 0 auto;
+}
+
+/* Bilah Daftar Isi Samping */
+.bilah-daftar-isi {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .bilah-daftar-isi {
+    display: block;
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    font-size: var(--teks-xs);
+  }
+}
+
+.daftar-isi__judul {
+  font-size: var(--teks-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--warna-teks-redup);
+  margin-bottom: var(--spasi-3);
+}
+
+.daftar-isi__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spasi-2);
+}
+
+.daftar-isi__tautan {
+  color: var(--warna-teks-redup);
+  text-decoration: none;
+  display: block;
+  line-height: 1.4;
+}
+
+.daftar-isi__tautan:hover {
+  color: var(--warna-aksen);
+}
+
+.daftar-isi__tautan--h3 {
+  padding-left: var(--spasi-3);
+}

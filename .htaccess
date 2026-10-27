@@ -1,0 +1,38 @@
+# ==============================================================================
+# PRDAI — Pengamanan Direktori Akar (Root Security & Redirection)
+# Mencegah pembacaan struktur folder dan mengalihkan langsung ke halaman login.
+# ==============================================================================
+
+# 1. Nonaktifkan penjelajahan direktori (Mencegah tampilan "Index of /PRDAI")
+Options -Indexes
+
+# 2. Blokir mutlak akses ke berkas sensitif, kredensial, dan konfigurasi rahasia
+<FilesMatch "(^\.env|\.env\..*|\.sql$|\.log$|\.md$|composer\.(json|lock)|\.gitignore|\.htaccess|\.git.*)$">
+    <IfModule authz_core_module>
+        Require all denied
+    </IfModule>
+    <IfModule !authz_core_module>
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 3. Pengalihan Otomatis dan Pembatasan Folder Internal
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /PRDAI/
+
+    # Blokir akses langsung ke folder privat internal (403 Forbidden)
+    RewriteRule ^(application|system|vendor|basis_data|\.vscode|\.git)(/.*)?$ - [F,L]
+
+    # Akses ke akar URL (/PRDAI/ atau /PRDAI) langsung dialihkan ke halaman masuk (login)
+    RewriteRule ^$ public/masuk [R=302,L]
+
+    # Alihkan semua permintaan lain di luar /public/ ke /public/ agar tidak mengekspos struktur folder
+    RewriteCond %{REQUEST_URI} !^/PRDAI/public/ [NC]
+    RewriteRule ^(.*)$ public/$1 [R=302,L]
+</IfModule>
+
+# 4. Fallback jika modul mod_rewrite tidak tersedia
+<IfModule !mod_rewrite.c>
+    RedirectMatch 302 ^/PRDAI/?$ /PRDAI/public/masuk
+</IfModule>

@@ -1,0 +1,145 @@
+/**
+ * PRDAI — Gaya halaman Beranda.
+ *
+ * Mengikuti pedoman Bagian 12: Bersih, tipografi teratur, tanpa gradien mencolok,
+ * tanpa bayangan tebal, tanpa kartu berikon dekoratif.
+ */
+.hero {
+  padding-top: var(--spasi-16);
+  padding-bottom: var(--spasi-12);
+  text-align: center;
+}
+
+.hero__judul {
+  font-size: var(--teks-2xl);
+  font-weight: 700;
+  max-width: 640px;
+  margin: 0 auto var(--spasi-4);
+  line-height: 1.15;
+}
+
+.hero__deskripsi {
+  font-size: var(--teks-lg);
+  color: var(--warna-teks-redup);
+  max-width: 540px;
+  margin: 0 auto var(--spasi-6);
+  line-height: var(--tinggi-baris-baca);
+}
+
+.hero__aksi {
+  display: flex;
+  justify-content: center;
+  gap: var(--spasi-3);
+  margin-bottom: var(--spasi-12);
+}
+
+/* Bagian Cara Kerja */
+.cara-kerja {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-12);
+  border-top: 1px solid var(--warna-garis);
+}
+
+.cara-kerja__judul {
+  font-size: var(--teks-lg);
+  margin-bottom: var(--spasi-6);
+  text-align: center;
+}
+
+.cara-kerja__daftar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spasi-6);
+}
+
+.cara-kerja__item {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-6);
+}
+
+.cara-kerja__nomor {
+  display: inline-block;
+  font-size: var(--teks-xs);
+  font-weight: 700;
+  color: var(--warna-aksen);
+  margin-bottom: var(--spasi-2);
+}
+
+.cara-kerja__subjudul {
+  font-size: var(--teks-md);
+  margin-bottom: var(--spasi-2);
+}
+
+.cara-kerja__teks {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  line-height: var(--tinggi-baris-baca);
+}
+
+/* Contoh Hasil PRD */
+.contoh-hasil {
+  padding-top: var(--spasi-8);
+  padding-bottom: var(--spasi-16);
+  border-top: 1px solid var(--warna-garis);
+}
+
+.contoh-hasil__judul {
+  font-size: var(--teks-lg);
+  margin-bottom: var(--spasi-2);
+  text-align: center;
+}
+
+.contoh-hasil__subjudul {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  text-align: center;
+  margin-bottom: var(--spasi-6);
+}
+
+.cuplikan-prd {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-8);
+  font-size: var(--teks-sm);
+  max-width: var(--lebar-baca);
+  margin: 0 auto;
+}
+
+.cuplikan-prd h3 {
+  font-size: var(--teks-md);
+  margin-bottom: var(--spasi-2);
+}
+
+.cuplikan-prd p {
+  color: var(--warna-teks-redup);
+  margin-bottom: var(--spasi-4);
+}
+
+.cuplikan-prd table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spasi-3);
+  margin-bottom: var(--spasi-4);
+}
+
+.cuplikan-prd th,
+.cuplikan-prd td {
+  border: 1px solid var(--warna-garis);
+  padding: var(--spasi-2) var(--spasi-3);
+  text-align: left;
+  font-size: var(--teks-xs);
+}
+
+.cuplikan-prd th {
+  background-color: var(--warna-latar);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .cara-kerja__daftar {
+    grid-template-columns: 1fr;
+  }
+}

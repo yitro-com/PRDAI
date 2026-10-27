@@ -1,0 +1,480 @@
+/**
+ * PRDAI — Gaya Panel Penggunaan / Analytics (Slide-Over Sesuai Gambar 2).
+ *
+ * Menggunakan background bacroundProfil.jpg full sampai bawah,
+ * Header bersih hanya tombol X di kanan atas (tanpa FREE PLAN),
+ * Kartu status token, batas pesan harian, grafik bar 7 hari, dan penggunaan fitur.
+ */
+
+.drawer-penggunaan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 260px; /* Sejajar batas sidebar kiri */
+  width: auto;
+  max-width: none;
+  background-color: #060a14;
+  background-image: url('../../img/bacroundProfil.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.2, 0, 0, 1);
+  overflow: hidden;
+  user-select: text;
+}
+
+/* Overlay gradient tembus pandang menyatu dengan latar belakang */
+.drawer-penggunaan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 22, 0.45) 0%,
+    rgba(6, 10, 20, 0.72) 35%,
+    rgba(6, 10, 20, 0.88) 75%,
+    rgba(5, 8, 16, 0.96) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drawer-penggunaan.tersembunyi {
+  display: none !important;
+  transform: translateX(100%) !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Saat Sidebar Di-collapse */
+.sidebar-chat.sidebar-chat--tertutup ~ .drawer-penggunaan {
+  left: 0;
+}
+
+/* ==================== HEADER BILAH ATAS (HANYA TOMBOL X KANAN ATAS, TANPA FREE PLAN) ==================== */
+.drawer-penggunaan__header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 28px;
+  background: transparent;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.drawer-penggunaan__header-aksi {
+  pointer-events: auto;
+}
+
+.drawer-penggunaan__btn-tutup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.drawer-penggunaan__btn-tutup:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #f87171;
+  transform: scale(1.05);
+}
+
+/* ==================== AREA KONTEN SCROLLABLE ==================== */
+.drawer-penggunaan__isi {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 2;
+  padding: 68px 36px 48px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.drawer-penggunaan__isi::-webkit-scrollbar {
+  width: 6px;
+}
+
+.drawer-penggunaan__isi::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+}
+
+.drawer-penggunaan__wadah-konten {
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==================== KEPALA: JUDUL & SUBJUDUL ==================== */
+.drawer-penggunaan__kepala {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.drawer-penggunaan__judul {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-penggunaan__deskripsi {
+  font-size: 14.5px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==================== KARTU UMUM ==================== */
+.drawer-penggunaan__kartu {
+  background: rgba(14, 20, 32, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+}
+
+.drawer-penggunaan__kartu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.drawer-penggunaan__kartu-ikon {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer-penggunaan__kartu-judul {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.drawer-penggunaan__nilai-utama {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.drawer-penggunaan__angka-besar {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.drawer-penggunaan__angka-pembagi {
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+/* Bar Progress */
+.drawer-penggunaan__progres-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 14px 0 12px;
+}
+
+.drawer-penggunaan__progres-isi {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.drawer-penggunaan__progres-isi--cyan {
+  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 100%);
+}
+
+.drawer-penggunaan__kartu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin-top: 10px;
+}
+
+.drawer-penggunaan__info-teks strong {
+  color: #e2e8f0;
+}
+
+.drawer-penggunaan__info-tag {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+/* ==================== BARIS 1: 2 KOLOM (TOKEN & PESAN) ==================== */
+.drawer-penggunaan__grid-atas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.drawer-penggunaan__pesan-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.drawer-penggunaan__pesan-info {
+  flex: 1;
+}
+
+.drawer-penggunaan__sub-info {
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Lingkaran Progress Meter 35% */
+.drawer-penggunaan__lingkaran-wadah {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-penggunaan__lingkaran-svg {
+  transform: rotate(-90deg);
+}
+
+.drawer-penggunaan__lingkaran-bg {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.drawer-penggunaan__lingkaran-meter {
+  stroke: #818cf8;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.drawer-penggunaan__lingkaran-teks {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==================== BARIS 2: KARTU RIWAYAT AKTIVITAS (CHART) ==================== */
+.drawer-penggunaan__kartu--chart {
+  margin-bottom: 20px;
+}
+
+.drawer-penggunaan__chart-wadah {
+  display: flex;
+  gap: 16px;
+  height: 220px;
+  margin-top: 14px;
+  position: relative;
+}
+
+.drawer-penggunaan__chart-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #64748b;
+  text-align: right;
+  width: 42px;
+  padding-bottom: 24px;
+}
+
+.drawer-penggunaan__chart-plot {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.drawer-penggunaan__chart-grid-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.drawer-penggunaan__bars-wadah {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+  height: calc(100% - 24px);
+  align-items: flex-end;
+  z-index: 2;
+  position: relative;
+}
+
+.drawer-penggunaan__bar-kolom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.drawer-penggunaan__bar-nilai {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  transition: color 0.15s ease;
+}
+
+.drawer-penggunaan__bar-batang {
+  width: 100%;
+  max-width: 48px;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.drawer-penggunaan__bar-batang:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scaleY(1.03);
+}
+
+.drawer-penggunaan__bar-kolom:hover .drawer-penggunaan__bar-nilai {
+  color: #ffffff;
+}
+
+/* Batang Highlight (Selasa 4.2k) Sesuai Gambar 2 */
+.drawer-penggunaan__bar-kolom--aktif .drawer-penggunaan__bar-batang {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.18) 100%);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.drawer-penggunaan__bar-kolom--aktif .drawer-penggunaan__bar-nilai {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.drawer-penggunaan__bar-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 8px;
+}
+
+/* ==================== BARIS 3: 2 KOLOM (GAMBAR & FITUR) ==================== */
+.drawer-penggunaan__grid-bawah {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.drawer-penggunaan__fitur-daftar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.drawer-penggunaan__fitur-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13.5px;
+}
+
+.drawer-penggunaan__fitur-baris:last-child {
+  border-bottom: none;
+}
+
+.drawer-penggunaan__fitur-nama {
+  color: #cbd5e1;
+}
+
+.drawer-penggunaan__fitur-jumlah {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ==================== RESPONSIF: TABLET & MOBILE ==================== */
+@media (max-width: 900px) {
+  .drawer-penggunaan__grid-atas,
+  .drawer-penggunaan__grid-bawah {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawer-penggunaan {
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    z-index: 60;
+  }
+
+  .drawer-penggunaan__isi {
+    padding: 60px 18px 36px;
+  }
+
+  .drawer-penggunaan__judul {
+    font-size: 24px;
+  }
+
+  .drawer-penggunaan__chart-wadah {
+    height: 180px;
+  }
+
+  .drawer-penggunaan__bars-wadah {
+    gap: 8px;
+  }
+}

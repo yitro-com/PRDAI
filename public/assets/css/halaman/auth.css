@@ -1,0 +1,515 @@
+/**
+ * PRDAI — Gaya Autentikasi Modern (Masuk & Daftar).
+ * Desain Glassmorphism Gelap Sesuai Referensi Pengguna:
+ * Input Berikon, Aksen Hijau Neon (#00C975), Tombol Sosial Google & GitHub,
+ * dan Latar Belakang Gelap Futuristik (Gambar 2).
+ */
+
+/* ==================== LATAR BELAKANG & PEMBUNGKUS ==================== */
+.halaman-auth-latar {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #060d1d;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Lapisan bayangan halus agar teks & kartu kontras sempurna */
+.halaman-auth-latar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(6, 13, 29, 0.45) 0%, rgba(3, 7, 18, 0.85) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==================== KARTU AUTENTIKASI ==================== */
+.auth-kartu {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 36px 32px 30px 32px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  color: #F8FAFC;
+}
+
+.auth-kartu--lebar {
+  max-width: 480px;
+}
+
+/* Logo Header Terpusat Tanpa Kotak */
+.auth-logo-wadah {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.auth-logo-img {
+  height: 100px;
+  max-height: 100px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Judul & Subjudul Kartu Terpusat */
+.auth-header {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: -25px;
+}
+
+.auth-header__judul {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+
+.auth-header__subjudul {
+  text-align: center;
+  font-size: 13.5px;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+
+/* ==================== FORMULIR & BIDANG MASUKAN ==================== */
+.auth-grup {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.auth-label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 8px;
+}
+
+.auth-label-baris {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tanda-wajib {
+  color: #EF4444;
+  margin-left: 2px;
+}
+
+.auth-tautan-lupa {
+  font-size: 12.5px;
+  color: #94A3B8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.auth-tautan-lupa:hover {
+  color: #3B82F6;
+  text-decoration: underline;
+}
+
+/* Kotak Input Berikon */
+.auth-input-kotak {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input-ikon-kiri {
+  position: absolute;
+  left: 14px;
+  color: #64748B;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.auth-input {
+  width: 100%;
+  height: 48px;
+  background: rgba(13, 20, 36, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0 14px 0 44px;
+  color: #FFFFFF;
+  font-size: 14.5px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.auth-input::placeholder {
+  color: #64748B;
+  font-size: 14px;
+}
+
+.auth-input--berujung {
+  padding-right: 44px;
+}
+
+/* Tanpa Hijau & Tanpa Box-Shadow Saat Dipencet/Fokus */
+.auth-input:focus {
+  border-color: #3B82F6;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.auth-input-kotak:focus-within .auth-input-ikon-kiri {
+  color: #3B82F6;
+}
+
+/* Tombol Toggle Lihat Kata Sandi */
+.auth-toggle-sandi {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #64748B;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+}
+
+.auth-toggle-sandi:hover {
+  color: #E2E8F0;
+}
+
+.auth-toggle-sandi:focus,
+.auth-toggle-sandi:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Pesan Galat Validasi Bidang */
+.auth-galat-teks {
+  display: block;
+  font-size: 12px;
+  color: #EF4444;
+  margin-top: 5px;
+}
+
+.auth-grup--galat .auth-input {
+  border-color: #EF4444;
+}
+
+/* ==================== CHECKBOX "INGAT SAYA" ==================== */
+.auth-checkbox-baris {
+  display: flex;
+  align-items: center;
+  margin: 18px 0 22px 0;
+}
+
+.auth-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.auth-checkbox-asli {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.auth-checkbox-kotak {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #334155;
+  border-radius: 5px;
+  background: rgba(13, 20, 36, 0.6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.auth-checkbox-kotak svg {
+  display: none;
+  color: #FFFFFF;
+}
+
+/* Checkbox Biru Tanpa Bayangan Hijau */
+.auth-checkbox-asli:checked+.auth-checkbox-kotak {
+  background: #2563EB;
+  border-color: #2563EB;
+  box-shadow: none !important;
+}
+
+.auth-checkbox-asli:checked+.auth-checkbox-kotak svg {
+  display: block;
+}
+
+.auth-checkbox-asli:focus-visible+.auth-checkbox-kotak {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+.auth-checkbox-teks {
+  font-size: 13.5px;
+  color: #94A3B8;
+  transition: color 0.15s ease;
+}
+
+.auth-checkbox-label:hover .auth-checkbox-teks {
+  color: #E2E8F0;
+}
+
+/* ==================== TOMBOL AKSI UTAMA ==================== */
+/* Tombol Biru Tanpa Box-Shadow Berlebih */
+.auth-btn-utama {
+  width: 100%;
+  height: 48px;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.auth-btn-utama:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  box-shadow: none;
+  filter: brightness(1.05);
+}
+
+.auth-btn-utama:active,
+.auth-btn-utama:focus {
+  transform: translateY(0);
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ==================== PEMISAH & LOGIN SOSIAL ==================== */
+.auth-pemisah {
+  display: flex;
+  align-items: center;
+  margin: 22px 0;
+  gap: 14px;
+}
+
+.auth-pemisah::before,
+.auth-pemisah::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-pemisah-teks {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.auth-sosial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.auth-btn-sosial {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #F1F5F9;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.auth-btn-sosial:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.auth-btn-sosial:active,
+.auth-btn-sosial:focus {
+  transform: translateY(0);
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ==================== KAKI KARTU & TAUTAN ==================== */
+.auth-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 18px;
+  margin-top: 6px;
+  text-align: center;
+  font-size: 13.5px;
+  color: #94A3B8;
+}
+
+/* [Daftar sekarang] / [Masuk di sini] Berwarna Biru Saja Sesuai Permintaan */
+.auth-tautan-aksen {
+  color: #3B82F6;
+  font-weight: 600;
+  margin-left: 4px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.auth-tautan-aksen:hover {
+  color: #60A5FA;
+  text-decoration: underline;
+}
+
+/* ==================== PESAN KILAT TANPA KOTAK (MENYATU DENGAN TEMA) ==================== */
+.auth-kartu .pesan-kilat {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 2px 0 16px 0 !important;
+  margin: -6px 0 8px 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.auth-kartu .pesan-kilat--galat {
+  color: #f87171 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.auth-kartu .pesan-kilat--galat svg {
+  color: #f87171 !important;
+  stroke: #f87171 !important;
+  flex-shrink: 0;
+}
+
+.auth-kartu .pesan-kilat--sukses {
+  color: #34d399 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.auth-kartu .pesan-kilat--sukses svg {
+  color: #34d399 !important;
+  stroke: #34d399 !important;
+  flex-shrink: 0;
+}
+
+.auth-kartu .pesan-kilat--info {
+  color: #60a5fa !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.auth-kartu .pesan-kilat--info svg {
+  color: #60a5fa !important;
+  stroke: #60a5fa !important;
+  flex-shrink: 0;
+}
+
+.auth-notifikasi {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.auth-notifikasi--galat {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #FCA5A5;
+}
+
+.auth-notifikasi--sukses {
+  background: rgba(16, 163, 127, 0.15);
+  border: 1px solid rgba(16, 163, 127, 0.35);
+  color: #6EE7B7;
+}
+
+/* Utilitas tersembunyi */
+.tersembunyi {
+  display: none !important;
+}
+
+/* Responsif Layar Kecil */
+@media (max-width: 480px) {
+  .auth-kartu {
+    padding: 28px 20px 24px 20px;
+    border-radius: 16px;
+  }
+
+  .auth-sosial-grid {
+    grid-template-columns: 1fr;
+  }
+}

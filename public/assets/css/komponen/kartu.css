@@ -1,0 +1,141 @@
+/**
+ * PRDAI — Komponen kartu dan panel.
+ *
+ * Mengikuti pedoman desain Bagian 12: radius 10px, batas garis 1px,
+ * tanpa bayangan tebal (shadowless clean look).
+ */
+.panel {
+  background-color: var(--warna-permukaan);
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  padding: var(--spasi-6);
+}
+
+.panel--padat {
+  padding: var(--spasi-4);
+}
+
+.panel__kepala {
+  margin-bottom: var(--spasi-4);
+  padding-bottom: var(--spasi-3);
+  border-bottom: 1px solid var(--warna-garis);
+}
+
+.panel__judul {
+  font-size: var(--teks-lg);
+  font-weight: 600;
+}
+
+.panel__deskripsi {
+  font-size: var(--teks-sm);
+  color: var(--warna-teks-redup);
+  margin-top: var(--spasi-1);
+}
+
+/* Baris daftar PRD (Dasbor) */
+.daftar-baris {
+  border: 1px solid var(--warna-garis);
+  border-radius: var(--radius-md);
+  background-color: var(--warna-permukaan);
+  overflow: hidden;
+}
+
+.kartu-prd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spasi-4);
+  border-bottom: 1px solid var(--warna-garis);
+  gap: var(--spasi-4);
+  transition: background-color var(--transisi-cepat);
+}
+
+.kartu-prd:last-child {
+  border-bottom: none;
+}
+
+.kartu-prd:hover {
+  background-color: var(--warna-latar);
+}
+
+.kartu-prd__konten {
+  flex: 1;
+  min-width: 0;
+}
+
+.kartu-prd__judul-tautan {
+  font-size: var(--teks-md);
+  font-weight: 600;
+  color: var(--warna-teks);
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kartu-prd__judul-tautan:hover {
+  color: var(--warna-aksen);
+}
+
+.kartu-prd__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-3);
+  margin-top: var(--spasi-1);
+  font-size: var(--teks-xs);
+  color: var(--warna-teks-redup);
+  flex-wrap: wrap;
+}
+
+.kartu-prd__aksi {
+  display: flex;
+  align-items: center;
+  gap: var(--spasi-2);
+  flex-shrink: 0;
+}
+
+/* Lencana status PRD */
+.lencana {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--teks-xs);
+  font-weight: 500;
+  border: 1px solid var(--warna-garis);
+}
+
+.lencana--selesai {
+  background-color: var(--warna-aksen-lembut);
+  color: var(--warna-aksen);
+  border-color: var(--warna-aksen);
+}
+
+.lencana--draf {
+  background-color: var(--warna-latar);
+  color: var(--warna-teks-redup);
+}
+
+.lencana--menyusun {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+}
+
+.lencana--gagal {
+  background-color: #FEE2E2;
+  color: var(--warna-bahaya);
+  border-color: #FCA5A5;
+}
+
+@media (max-width: 640px) {
+  .kartu-prd {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .kartu-prd__aksi {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

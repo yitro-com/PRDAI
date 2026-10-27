@@ -1,0 +1,402 @@
+/**
+ * PRDAI — Gaya Panel Upgrade Paket (Slide-Over Sesuai Gambar 1).
+ *
+ * Background menggunakan bacroundProfil.jpg yang sama dengan profil,
+ * membentang penuh 100% sampai bawah dengan kartu glassmorphism modern.
+ */
+
+.drawer-tingkatkan {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 260px; /* Sejajar dengan batas sidebar kiri */
+  width: auto;
+  max-width: none;
+  background-color: #060a14;
+  background-image: url('../../img/bacroundProfil.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), left 0.22s cubic-bezier(0.2, 0, 0, 1);
+  overflow: hidden;
+  user-select: text;
+}
+
+/* Overlay halus tembus pandang menyeluruh */
+.drawer-tingkatkan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 22, 0.42) 0%,
+    rgba(6, 10, 20, 0.68) 35%,
+    rgba(6, 10, 20, 0.85) 75%,
+    rgba(5, 8, 16, 0.94) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drawer-tingkatkan.tersembunyi {
+  display: none !important;
+  transform: translateX(100%) !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Saat Sidebar Di-collapse, Panel Mengembang 100% */
+.sidebar-chat.sidebar-chat--tertutup ~ .drawer-tingkatkan {
+  left: 0;
+}
+
+/* Tombol X Tutup Mengambang di Kanan Atas */
+.drawer-tingkatkan__header-aksi {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.drawer-tingkatkan__btn-tutup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(10, 15, 28, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e5e7eb;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-tingkatkan__btn-tutup:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* Area Konten Scrollable */
+.drawer-tingkatkan__isi {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 48px 32px 80px;
+  position: relative;
+  z-index: 2;
+  overscroll-behavior: contain;
+}
+
+.drawer-tingkatkan__isi::-webkit-scrollbar {
+  width: 7px;
+}
+
+.drawer-tingkatkan__isi::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer-tingkatkan__isi::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+/* Header Tengah */
+.drawer-tingkatkan__kepala {
+  max-width: 760px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.drawer-tingkatkan__judul {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.drawer-tingkatkan__subjudul {
+  margin: 0 auto 24px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #9ca3af;
+  max-width: 680px;
+}
+
+/* Segmented Control Pill: Pribadi | Bisnis */
+.drawer-tingkatkan__tab-kontrol {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(18, 24, 38, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.drawer-tingkatkan__tab-btn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 7px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawer-tingkatkan__tab-btn:hover {
+  color: #ffffff;
+}
+
+.drawer-tingkatkan__tab-btn--aktif {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ==================== GRID 4 KARTU PAKET ==================== */
+.drawer-tingkatkan__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1320px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.drawer-tingkatkan__kartu {
+  background: rgba(14, 20, 34, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+}
+
+.drawer-tingkatkan__kartu:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+}
+
+/* Kartu Plus Unggulan */
+.drawer-tingkatkan__kartu--unggulan {
+  background: rgba(16, 24, 42, 0.82);
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(37, 99, 235, 0.12);
+}
+
+.drawer-tingkatkan__kartu--unggulan:hover {
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.55), 0 0 32px rgba(37, 99, 235, 0.22);
+}
+
+.drawer-tingkatkan__badge-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.drawer-tingkatkan__tier-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: capitalize;
+}
+
+.drawer-tingkatkan__badge-rekomendasi {
+  background: rgba(37, 99, 235, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.drawer-tingkatkan__kartu-judul {
+  margin: 6px 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f9fafb;
+  letter-spacing: -0.3px;
+}
+
+.drawer-tingkatkan__kartu-deskripsi {
+  margin: 0 0 20px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #94a3b8;
+  min-height: 56px;
+}
+
+/* Tombol Aksi Kartu */
+.drawer-tingkatkan__btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 9999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+  margin-bottom: 20px;
+}
+
+.drawer-tingkatkan__btn--saat-ini {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.drawer-tingkatkan__btn--putih {
+  background: #ffffff;
+  color: #0b0f19;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+}
+
+.drawer-tingkatkan__btn--putih:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.25);
+}
+
+.drawer-tingkatkan__btn--biru {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+}
+
+.drawer-tingkatkan__btn--biru:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.5);
+}
+
+/* Baris Harga */
+.drawer-tingkatkan__harga-baris {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer-tingkatkan__harga-awalan {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-right: 2px;
+}
+
+.drawer-tingkatkan__harga-rp {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.drawer-tingkatkan__harga-angka {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.drawer-tingkatkan__harga-periode {
+  font-size: 12.5px;
+  color: #9ca3af;
+}
+
+/* Daftar Fitur */
+.drawer-tingkatkan__fitur-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawer-tingkatkan__fitur-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #cbd5e1;
+}
+
+.drawer-tingkatkan__fitur-ikon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+/* ==================== RESPONSIF ==================== */
+@media (max-width: 1240px) {
+  .drawer-tingkatkan__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .drawer-tingkatkan {
+    left: 0 !important;
+    width: 100vw !important;
+    z-index: 60;
+  }
+
+  .drawer-tingkatkan__isi {
+    padding: 36px 16px 60px;
+  }
+
+  .drawer-tingkatkan__judul {
+    font-size: 24px;
+  }
+
+  .drawer-tingkatkan__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .drawer-tingkatkan__header-aksi {
+    top: 14px;
+    right: 16px;
+  }
+}
